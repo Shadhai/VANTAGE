@@ -1,0 +1,25 @@
+# Create .gitignore in D:\vantage
+@"
+# Python
+__pycache__/
+*.py[cod]
+*.so
+venv/
+.env
+
+# Data files (too large for GitHub)
+data/raw/candidates.jsonl
+data/processed/candidate_embeddings.npy
+
+# Output
+output/submission.csv
+logs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+"@ | Out-File -FilePath .gitignore -Encoding UTF8
