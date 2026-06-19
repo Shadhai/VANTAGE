@@ -25,3 +25,6 @@ regex==2024.5.15
 # Utilities
 tqdm==4.66.4
 python-dateutil==2.9.0
+streamlit==1.35.0
+plotly==5.22.0
+networkx==3.3
