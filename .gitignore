@@ -5,10 +5,6 @@ __pycache__/
 venv/
 .env
 
-# Data files
-data/raw/candidates.jsonl
-data/processed/candidate_embeddings.npy
-
 # Output
 output/submission.csv
 logs/
