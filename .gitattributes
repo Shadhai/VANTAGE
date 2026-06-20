@@ -1,0 +1,2 @@
+data/raw/candidates.jsonl filter=lfs diff=lfs merge=lfs -text
+data/processed/candidate_embeddings.npy filter=lfs diff=lfs merge=lfs -text
