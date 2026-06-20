@@ -1,6 +1,6 @@
 ﻿---
 title: VANTAGE
-emoji: ●
+emoji: 🔥🔥
 colorFrom: gray
 colorTo: green
 sdk: streamlit

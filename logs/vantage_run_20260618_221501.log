@@ -1,0 +1,107 @@
+============================================================
+VANTAGE Pipeline Started
+Time: 2026-06-18T22:15:01.799712
+============================================================
+
+--- STAGE 0: Validating Inputs ---
+[INFO] Candidates file: 464.7 MB
+[INFO] Job description: 9801 bytes
+[INFO] First candidate: CAND_0000001 - readable ✓
+
+--- STAGE 1: Loading Pre-Computed Artifacts ---
+[INFO] Loaded embeddings: 100000 candidates × 384 dim (73.2 MB, float16)
+[INFO] Loaded 100000 candidate ID mappings
+[INFO] Loaded text frequency map: 25912 unique patterns
+[INFO] Loaded XGBoost ranker model ✓
+[INFO] Built embedding lookup map: 100000 entries
+
+--- STAGE 2: Parsing Job Description ---
+[INFO] Hard gates: 5 extracted
+[INFO] Strong preferences: 6 categories
+[INFO] Implicit needs: 3 identified
+[INFO] Weighted terms: 86 terms
+[INFO]   • ranking_retrieval_experience: weight=0.30, importance=critical
+[INFO]   • product_company_experience: weight=0.20, importance=high
+[INFO]   • india_location: weight=0.15, importance=high
+[INFO]   • experience_band: weight=0.15, importance=medium
+[INFO]   • evaluation_experience: weight=0.10, importance=high
+[INFO]   • llm_fine_tuning: weight=0.10, importance=nice_to_have
+[INFO] Loading embedding model (all-MiniLM-L6-v2)...
+[INFO] JD embedding generated ✓ (384 dimensions)
+
+--- STAGE 3: Coarse Ranking (100K → ~25K → 500) ---
+[INFO] Streaming and scoring candidates...
+[INFO]   Processed 25,000 candidates (276/sec) — 17,016 survived, 7,984 filtered
+[INFO]   Processed 50,000 candidates (323/sec) — 33,951 survived, 16,049 filtered
+[INFO]   Processed 75,000 candidates (306/sec) — 51,068 survived, 23,932 filtered
+[INFO]   Processed 100,000 candidates (317/sec) — 68,002 survived, 31,998 filtered
+[INFO] Streaming complete in 315.5s
+[INFO] Total candidates: 100,000
+[INFO] Survived filtering: 68,002 (68.0%)
+[INFO] Filtered out: 31,998
+[INFO] Errors: 0
+[INFO] Top filter reasons:
+[INFO]   • non_india_no_relocation:USA: 6,225
+[INFO]   • consulting_only_no_ml: 4,335
+[INFO]   • non_india_no_relocation:Australia: 1,624
+[INFO]   • non_india_no_relocation:Canada: 1,577
+[INFO]   • non_india_no_relocation:UK: 1,542
+[INFO] Selected top 500 for fine re-ranking
+[INFO] Score range: [0.6014, 0.9519], median: 0.6388
+
+--- STAGE 4: Fine Re-Ranking (500 → 100) ---
+[INFO] Fine re-ranking complete: 100 candidates
+[INFO] Final score range: [0.7430, 0.9425]
+[INFO] Unique titles in top 100: 26
+[INFO] Unique locations in top 100: 19
+
+--- STAGE 5: Generating Output ---
+[INFO] Generating reasoning strings...
+[INFO] Generated reasoning for 100 candidates ✓
+[INFO] Submission written to: output\submission.csv
+[INFO] File size: 19,272 bytes
+[INFO] Rows: 100
+[INFO] 
+[INFO] ═══ TOP 10 CANDIDATES ═══
+[INFO]   Rank   1: CAND_0081846 (score: 0.9425)
+[INFO]          Lead AI Engineer with 6.7 years at Razorpay building production ranking and retrieval systems — strong alignment with JD's core requirements. Based...
+[INFO]   Rank   2: CAND_0018499 (score: 0.9079)
+[INFO]          Senior Machine Learning Engineer at Zomato (7.2y) — ships ranking systems to real users and designs evaluation frameworks, exactly the profile the ...
+[INFO]   Rank   3: CAND_0071974 (score: 0.8913)
+[INFO]          Senior AI Engineer (7.8y at Netflix) combines deep retrieval expertise with production deployment experience across the full ML stack. Based in Viz...
+[INFO]   Rank   4: CAND_0008425 (score: 0.8750)
+[INFO]          Senior NLP Engineer with 7.8y building ranking infrastructure at Ola — matches JD's emphasis on deep technical depth and shipping velocity. Based i...
+[INFO]   Rank   5: CAND_0077337 (score: 0.8715)
+[INFO]          Staff Machine Learning Engineer — 7y shipping ML systems at Paytm; precisely the researcher-who-ships profile the JD prioritizes. Based in Kochi, K...
+[INFO]   Rank   6: CAND_0044378 (score: 0.8697)
+[INFO]          Senior Data Engineer at Nykaa (6.6y) owns ranking architecture from embeddings through A/B testing — top-tier JD match. Based in Gurgaon, Haryana; ...
+[INFO]   Rank   7: CAND_0057563 (score: 0.8543)
+[INFO]          NLP Engineer with 6.8y leading ranking systems at Locobuzz; demonstrated ability to ship fast, measure rigorously, and iterate from data. Based in ...
+[INFO]   Rank   8: CAND_0010685 (score: 0.8520)
+[INFO]          NLP Engineer (6.7y, Rephrase.ai) brings production ranking experience plus evaluation rigor — the scrappy product-engineering attitude the JD value...
+[INFO]   Rank   9: CAND_0079387 (score: 0.8466)
+[INFO]          AI Engineer at Microsoft (6.9y) — built and deployed retrieval systems to real users with strong offline and online evaluation practices. Based in ...
+[INFO]   Rank  10: CAND_0048558 (score: 0.8365)
+[INFO]          Data Scientist with 6.7y at Rephrase.ai; has worked on ranking since before LLMs made it fashionable — exactly what the JD asks for. Based in Noida...
+[INFO]   ...
+[INFO]   Rank  98: CAND_0043384 (score: 0.7437)
+[INFO]   Rank  99: CAND_0005311 (score: 0.7433)
+[INFO]   Rank 100: CAND_0059795 (score: 0.7430)
+
+--- STAGE 6: Validating Output ---
+[INFO] Output validation passed ✓
+[INFO]   • Correct header: candidate_id, rank, score, reasoning
+[INFO]   • Exactly 100 data rows
+[INFO]   • All ranks 1-100 present
+[INFO]   • Scores non-increasing
+
+--- PIPELINE SUMMARY ---
+[INFO] Total runtime: 376.7 seconds
+[INFO] Candidates processed: 100,000
+[INFO] Candidates filtered: 31,998
+[INFO] Errors encountered: 0
+[INFO] Final output: 100 candidates
+[INFO] Submission file: output\submission.csv
+[WARN] Pipeline took 376.7s — exceeds 5-minute constraint!
+[INFO] 
+[INFO] ✓ VANTAGE pipeline complete
