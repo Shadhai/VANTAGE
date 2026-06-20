@@ -5,10 +5,6 @@ __pycache__/
 venv/
 .env
 
-# Output
-output/submission.csv
-logs/
-
 # IDE
 .vscode/
 .idea/
