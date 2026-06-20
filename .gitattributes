@@ -1,2 +1,9 @@
 data/raw/candidates.jsonl filter=lfs diff=lfs merge=lfs -text
 data/processed/candidate_embeddings.npy filter=lfs diff=lfs merge=lfs -text
+data/processed/candidate_network.json filter=lfs diff=lfs merge=lfs -text
+data/processed/skill_graph.json filter=lfs diff=lfs merge=lfs -text
+data/processed/career_flow_graph.json filter=lfs diff=lfs merge=lfs -text
+data/processed/candidate_ids.json filter=lfs diff=lfs merge=lfs -text
+data/processed/text_frequencies.json filter=lfs diff=lfs merge=lfs -text
+data/processed/jd_requirements.json filter=lfs diff=lfs merge=lfs -text
+data/processed/candidate_features.parquet filter=lfs diff=lfs merge=lfs -text
